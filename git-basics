@@ -133,5 +133,24 @@ nasir@Illuminus-Ubuntu2:~/Git/nm_repo2$ cd project/
 nasir@Illuminus-Ubuntu2:~/Git/nm_repo2/project$ ls
 README
 
+9a. Trying the above steps on this file and other notes that I will write in the course of this and other projects. Ill add all of that to my github or gitlab accounts.
 
+Other steps were the same. Create a dir. git-init. move the files. Git add. Git commit. Now its when adding these new files to the repo on github is what started creating a problem. I had to login to github and manually create a repo. Now then I needed to add a remote for this local dir there. 
 
+nasir@Illuminus-Ubuntu2:~/Documents/Git$ git remote add origin https://github.com/munshinasir/gitbasics.git
+
+Now when I was ready to push my commit to the remote repo. I got a fatal error 
+fatal: refusing to merge unrelated histories
+Error redoing merge 1234deadbeef1234deadbeef
+
+In order to settle this I used 
+>  git pull origin master -allow-unrelated-histories
+
+Reason being I had created the repo with a blank README.md in github. This command allowed for the merge of the docs in both repos. Now I could easily go ahead and do git push origin master
+
+Some syntax 
+
+git  ------ push ------- origin ------------------- master
+
+(vcs)       (cmd)        (local branch)           (remote branch)
+ 
