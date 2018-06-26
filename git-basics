@@ -158,7 +158,13 @@ git  ------ push ------- origin ------------------- master
 
 > git log --> displays SHA1 hash value for the commits that you've made on the file. 
 
+Also displays when you pushed the changes to the master (on the remote) as opposed to your head (your latest commit)
+
 > git show <SHA1-val> --> shall display the changes that you made. 
 
+12. Now we need to talk about git diff. Once you make the changes to the file you can choose to see the diff with the committed version
 
+> git diff 
+
+PS : I am going to test this command exactly now...
 
