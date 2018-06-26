@@ -1,0 +1,137 @@
+Welcome to the Git Basics Notes
+
+Today we are learning about git. Our current best place for version control. Git is a distributed VCS (Version Control System). It doesnt work like our usual central version control systems where the central server holds all the files and we checkout the files from there and commit to the central repository. 
+
+Git works where the entire repository is replicated on the client side. Then the user makes the changes to the files as he requires. Once satisfied with the changes he can add them to the staging area and that would be used to commit the files - only those selected are committed. 
+
+These committed set of files are then replicated to the central and other repositories - when someone does a pull. 
+
+Advantage of this is that 
+1. Losing the central repository isnt that big a deal cause each checkout is a complete repository
+2. The entire repo is compressed such that it doesnt create a space overhead on the client side.
+3. Doesnt need powerful machines to process all the files in all the branches.
+4. Each commit is identified with an SHA1 (Secure Hashing Algorithm 1) hash. Hence its individually indentifiable. 
+
+--Some commands
+
+nasir@Illuminus-Ubuntu2:~/Documents$ git config --global core.edit vim
+nasir@Illuminus-Ubuntu2:~/Documents$ git config --global merge.tool vimdiff
+nasir@Illuminus-Ubuntu2:~/Documents$ git config --list
+user.name=Nasir Munshi
+user.email=munshinasir@gmail.com
+branch.autosetuprebase=always
+color.ui=true
+color.status=auto
+color.branch=auto
+core.edit=vim
+merge.tool=vimdiff
+
+As you can see the git config command takes alot of arguments and is used to setup the config of git as per your requirements. The --global argument makes sure that the setting is applied to all repositories on the system.
+
+
+-- GIT LIFE CYCLE ----
+
+Repo -> Clone - Working Copy -> Add/Modify/Delete - Working Copy -> Diff to review Changes -> Commit/Push - changes -> Amend ( Fix Mistakes ) (optional) -> Push - to the Repo -> (cycle repeats)
+
+--Commands for the steps:
+
+1. Create a User
+##TODO
+
+2. Generate a Bare Repo
+> pwd
+/home/nasir
+
+> mkdir Git/project.git #bare repos should be named .git
+> cd Git/project.git
+> git --bare init 
+Initialized empty Git repository in /home/nasir/Git/project.git/
+
+> ls
+branches  config  description  HEAD  hooks  info  objects  refs
+
+3. Creating you SHA keys - 1 public 1 private
+ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/nasir/.ssh/id_rsa): <Enter>
+Created directory '/home/nasir/.ssh'.
+Enter passphrase (empty for no passphrase): <Enter> 
+Enter same passphrase again: <Enter>
+Your identification has been saved in /home/nasir/.ssh/id_rsa. <Private-key>
+Your public key has been saved in /home/nasir/.ssh/id_rsa.pub. <Public-key>
+The key fingerprint is:
+SHA256:GCmuFifGBCUckOaNNiXuN6R4YKqG4gYDVMpSVRMBjbo nasir@Illuminus-Ubuntu2
+The key's randomart image is:
++---[RSA 2048]----+
+|*+=oo==o         |
+|oO... .o         |
+|*o*.. o          |
+|+X.+ . o         |
+|B.O.o . S        |
+|=+EB             |
+|+o+ .            |
+|++               |
+|=.               |
++----[SHA256]-----+
+
+4. Add a file to the staging : ( Here I have create  a README file in repo nm_repo1 )
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git status -s
+?? README
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git add .
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git status -s
+A  README
+
+5. Committing the changes to the local repo
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git commit -m "Initial Commit"
+[master (root-commit) 2472124] Initial Commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README
+
+6. Checking if the commit is logged 
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git log
+commit 247212433778ab50fca881d3282c20c9753fc21a (HEAD -> master)
+
+Author: Nasir Munshi <munshinasir@gmail.com>
+Date:   Tue Jun 26 00:05:58 2018 -0500
+
+    Initial Commit
+
+7. Adding a remote repo for the local repo we just created.
+
+Before we can push the changes further to the remote repo. We need to make the nm_repo1 as the remote of the project.git repo that we created as a bare repo. This is a one time operation and we can then continue adding the files and pushing them to the central repo. 
+
+Git only pushes to the matching branches. So for every branch in the local repo there is a matching branch on the remote side as well.
+
+
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git remote add origin ~/Git/project.git
+#We didnt login to the server since its a local repo. For online repo you need to start with user@server:repo.git
+
+#Display all the actions that have been performed on the remote
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git remote -v
+origin	/home/nasir/Git/project.git (fetch)
+origin	/home/nasir/Git/project.git (push)
+
+8. Pushing the changes made to local nm_repo1 to master
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git push origin master
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 247 bytes | 247.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To /home/nasir/Git/project.git
+ * [new branch]      master -> master
+
+These changes are now successfully committed to the remote repo.
+
+9. Cloning the repo from the remote to another dir/system
+nasir@Illuminus-Ubuntu2:~/Git$ mkdir nm_repo2
+nasir@Illuminus-Ubuntu2:~/Git$ cd nm_repo2
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo2$ git clone ~/Git/project.git
+Cloning into 'project'...
+done.
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo2$ ls
+project
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo2$ cd project/
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo2/project$ ls
+README
+
+
+
