@@ -185,4 +185,5 @@ This necessitates the need to pull the repos that you work with every day or atl
 
 This also leaves a small space where if the central repo is compromised just after someone's push and before there was a pull which copies the changes to any local repo. 
 
+We can now see the error messages that we printed by Git in the 'conflict-file' in the same repo. The file also contains some of the notes I made for triggering the conflict as well
 
