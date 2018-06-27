@@ -1,0 +1,29 @@
+This is the feature file we have submitted to the customer. Amazingly my new feature section is missing here. So here i am pretending to correct my feature. And voila !! Here the feature is now working as good as new!!
+
+Now here from the other repo I see that the feature fix is committed and can be pulled!! This I will commit so that I can make sure that someone cloning my repo can add to the feature fix. And then I continue working on my feature after pulling this repo.
+
+Now I will modify this feature a little further cause the other guy didnt complete the fix.
+
+But Git didnt allow me to merge my saved changes to the last change above because I hadnt committed my changes. The log looked like :
+
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo1$ git stash pop
+error: Your local changes to the following files would be overwritten by merge:
+	new-feature
+Please commit your changes or stash them before you merge.
+Aborting
+
+So now I need to commit my changes. 
+
+Below was the conflict I created cause I had saved a file and worked over the same lines for the customer feature fix.
+=======
+This is the feature file we have submitted to the customer
+
+New Feature : 
+Here we are adding the new feature that I am currently working on. But how was I supposed to know that customer is going to escalate on the old feature I just delivered.
+[Stashed changes]
+
+But here we go for the new feature again.
+New Feature : 
+Here we are adding the new feature that I am currently working on. But how was I supposed to know that customer is going to escalate on the old feature I just delivered.
+
+

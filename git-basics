@@ -187,3 +187,12 @@ This also leaves a small space where if the central repo is compromised just aft
 
 We can now see the error messages that we printed by Git in the 'conflict-file' in the same repo. The file also contains some of the notes I made for triggering the conflict as well
 
+15. Stash : Operation
+
+Stash saves your current stage/workspace and stores it on a stack. This reverts your repo to the last pulled/pushed state. So all your unworked changes are safe while you work on something that is more important. These changes can be committed/pushed/pulled and modified as normal changes without affecting the saved feature work.
+
+Now I tried something funny. I pulled the latest version of the repo with git-pull and then edited a file that was stashed. Now when I issued the "git stash pop" which should ideally have merged my saved work with the current file Git refused to merge. It asked me to commit those edited changes first. The log you can find in the new-feature file in the same repo.
+
+And since I had to overwrite the stashed lines to fix customer code. It also generated an error message. This error message and its resulting logs are also added to the new-feature file.
+
+
