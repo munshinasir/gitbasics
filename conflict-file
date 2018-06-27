@@ -1,0 +1,44 @@
+Hi I am trying to add this new file and see if I can get the file to the other repo.
+
+Conflicting with the current file lets see how git handles this!! 
+The above line was conflicting with another line that was added from another clone of the same repo. 
+Git didnt throw an error when doing the commit. But the push did create a conflict. This was then logged into the log. 
+And in CVS style it showed the changes between the local HEAD and the line in the commit. 
+
+Adding this new line and watching it get pulled from the master in the other directory
+
+Finally the below log was printed when I pulled in the changes in the other repo
+
+nasir@Illuminus-Ubuntu2:~/Git/nm_repo2/project$ git log
+commit 2c5d8f2ae07d5b8c0b2454f9722043151fcb4e77 (HEAD -> master, origin/master, origin/HEAD)
+Merge: 8e5301d cd97a5f
+Author: Nasir Munshi <munshinasir@gmail.com>
+Date:   Tue Jun 26 23:54:47 2018 -0500
+
+    Conflict resolved  <-- This was the message when the conflict was resolved. More interesting message at the bottom.
+
+commit 8e5301db3a85677161d040324110fed53c828774
+Author: Nasir Munshi <munshinasir@gmail.com>
+Date:   Tue Jun 26 23:51:00 2018 -0500
+
+    Actually adding a conflict  <--- Look at this!! The commit message from the other repo is still here!! 
+
+commit cd97a5f55945e60c4da2c935dd34f8851bc68756
+Author: Nasir Munshi <munshinasir@gmail.com>
+Date:   Tue Jun 26 23:49:09 2018 -0500
+
+    Modifying file 14
+
+commit ca83fdf34f101a43102489d13d1a826e766f0374
+Author: Nasir Munshi <munshinasir@gmail.com>
+Date:   Tue Jun 26 23:46:25 2018 -0500
+
+    Adding a new file
+
+commit 247212433778ab50fca881d3282c20c9753fc21a
+Author: Nasir Munshi <munshinasir@gmail.com>
+Date:   Tue Jun 26 00:05:58 2018 -0500
+
+    Initial Commit
+
+

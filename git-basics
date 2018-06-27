@@ -168,3 +168,21 @@ Also displays when you pushed the changes to the master (on the remote) as oppos
 
 PS : I am going to test this command exactly now...
 
+06-26-2018
+Git diff prints the diff from the file with the committed file. 
+
+13. Once the changes have been pushed to the central repo anyone can pull in the changes. 
+
+> git push origin master <-- pushes the committed changes to the master branch. 
+
+> git pull origin master <-- pulls in the changes from the central repo to the origin branch.
+
+14. Now when you are making simultaneous changes to the files in 2 different repos - there are bound to be conflicts. Git doesnt show the conflicts till the changes you committed are supposed to be push to the central repo. 
+
+The funny thing to note here is that git also prints the commit message from when you committed the changes that created the conflict. So you have the commit with the conflicts and then the commit with the conflicts resolved. 
+
+This necessitates the need to pull the repos that you work with every day or atleast before every single commit. Which is a good thing. 
+
+This also leaves a small space where if the central repo is compromised just after someone's push and before there was a pull which copies the changes to any local repo. 
+
+
