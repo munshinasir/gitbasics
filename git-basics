@@ -195,4 +195,10 @@ Now I tried something funny. I pulled the latest version of the repo with git-pu
 
 And since I had to overwrite the stashed lines to fix customer code. It also generated an error message. This error message and its resulting logs are also added to the new-feature file.
 
+16. Move Operation
+
+As the name suggests this is going to be about moving the files from one source dir to another. Nothing new here. 
+
+Well couldnt help it. One funny thing "git mv" will automatically add the file to the list - you dont need to do a "git add" again. Just a "git commit" is good enough.
+
 
